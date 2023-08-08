@@ -43,4 +43,13 @@ class Market
     end
     inventory
   end
+
+  def overstocked_items
+    overstocked = total_inventory.find_all do |item, info|
+      info[:quantity] > 50 && info[:vendors].size > 1
+    end
+    overstocked.map do |item_details|
+      item_details.first
+    end
+  end
 end

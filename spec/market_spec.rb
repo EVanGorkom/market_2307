@@ -97,4 +97,20 @@ RSpec.describe Vendor do
       expect(@market.total_inventory).to eq expected_result
     end
   end
+
+  describe "#overstocked_items" do
+    it "returns an array of overstocked items" do
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)
+      @market.add_vendor(@vendor3)
+
+      @vendor1.stock(@item1, 35)
+      @vendor1.stock(@item2, 7)
+      @vendor2.stock(@item4, 50)
+      @vendor2.stock(@item3, 25)
+      @vendor3.stock(@item1, 65)
+
+      expect(@market.overstocked_items).to eq([@item1])
+    end
+  end
 end
