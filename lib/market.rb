@@ -52,4 +52,10 @@ class Market
       item_details.first
     end
   end
+
+  # def sell(item, quantity)
+  #   vendors_with_item = vendors_that_sell(item)
+  #   remaining_quantity = quantity
+
+  
 end

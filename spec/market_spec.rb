@@ -113,4 +113,29 @@ RSpec.describe Vendor do
       expect(@market.overstocked_items).to eq([@item1])
     end
   end
+
+  describe "#sell" do
+    xit "returns true if enough stock is available and updates vendor inventories" do
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)
+      @market.add_vendor(@vendor3)
+
+      @vendor1.stock(@item1, 35)
+      @vendor3.stock(@item1, 65)
+
+      result = @market.sell(@item1, 40)
+
+      expect(result).to eq(true)
+      expect(@vendor1.check_stock(@item1)).to eq(0)
+      expect(@vendor3.check_stock(@item1)).to eq(60)
+    end
+
+    xit "returns false if not enough stock is available and does not update vendor inventories" do
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)
+      @market.add_vendor(@vendor3)
+
+      # did not finish iteration 4 methods
+    end
+  end
 end
